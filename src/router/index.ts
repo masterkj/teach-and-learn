@@ -7,8 +7,27 @@ const routes: RouteConfig[] = [
   {
     path: '/',
     name: 'Home',
-    component: () => import(/* webpackChunkName: "about" */ '@/views/Home.vue'),
-
+    component: () => import('@/views/Home.vue'),
+  },
+  {
+    path: '/signup',
+    name: 'Signup',
+    component: () => import('@/views/Signup/index.vue'),
+  },
+  {
+    path: '/profile-info',
+    name: 'Profile-info',
+    component: () => import('@/views/Profile-info/index.vue'),
+  },
+  {
+    path: '/signin',
+    name: 'Sign-in',
+    component: () => import('@/views/Signin/index.vue'),
+  },
+  {
+    path: '/teaching-materials',
+    name: 'teaching-materials',
+    component: () => import('@/views/Teaching-materials/index.vue'),
   },
 ];
 

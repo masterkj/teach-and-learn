@@ -19,6 +19,7 @@ pnpm-debug.log*
 
 # Editor directories and files
 .idea
+واجهات.docx
 .vscode
 *.suo
 *.ntvs*
