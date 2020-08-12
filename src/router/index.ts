@@ -15,6 +15,11 @@ const routes: RouteConfig[] = [
     component: () => import('@/views/Signup/index.vue'),
   },
   {
+    path: '/profile-edit',
+    name: 'Profile-edit',
+    component: () => import('@/views/Profile-edit/index.vue'),
+  },
+  {
     path: '/profile-info',
     name: 'Profile-info',
     component: () => import('@/views/Profile-info/index.vue'),
@@ -28,6 +33,11 @@ const routes: RouteConfig[] = [
     path: '/teaching-materials',
     name: 'teaching-materials',
     component: () => import('@/views/Teaching-materials/index.vue'),
+  },
+  {
+    path: '/teaching-schools',
+    name: 'teaching-schools',
+    component: () => import('@/views/Teaching-schools/index.vue'),
   },
   {
     path: '/show-teachers',

@@ -7,7 +7,7 @@
       <b-form-select
         v-model="pickedYear"
         placeholder="-- please select a year --"
-        :options="years"
+        :options="materials"
         value-field="id"
         text-field="name"
         class="mt-3"
@@ -42,17 +42,17 @@ export default {
   data() {
     return {
       fields: ["name", "actions"],
-      years: [
+      materials: [
         {
-          name: "السنة الأولى",
+          name: " السنة الأولى -- تحليل 2",
           id: 1,
         },
         {
-          name: "السنة الثانية",
+          name: "السنة الثانية -- ص",
           id: 2,
         },
         {
-          name: "السنة الثالثة",
+          name: "السنة الثالثة -- سس",
           id: 3,
         },
         {

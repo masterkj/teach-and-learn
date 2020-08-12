@@ -24,6 +24,7 @@
             <b-dropdown-item class="text-right" href="#">عربية</b-dropdown-item>
             <b-dropdown-item class="text-right" href="#">انجليزي</b-dropdown-item>
           </b-nav-item-dropdown>
+          <b-nav-item to="/profile-info" right>ملفي الشخصي</b-nav-item>
           <b-nav-item to="/signin" right>تسجيل الدخول</b-nav-item>
           <b-nav-item to="/signup" right>تسجيل حساب</b-nav-item>
 

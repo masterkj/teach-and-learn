@@ -51,7 +51,7 @@ export default {
           paragraph: `ان كنت قادرا على اعطاء مادة معينة في مدرسة حكومية، 
            لطلاب مرحلة التعليم الأساسية والاعدادية، يمكنك الان التسجيل في المنصة كأستاذ لهذه المادة `,
           icon: "/icons/school.png",
-          link: "/teaching-materials",
+          link: "/teaching-schools",
         },
       ],
     };
