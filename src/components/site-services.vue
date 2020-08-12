@@ -16,7 +16,6 @@
             :link="card.link"
           />
         </div>
-   
       </div>
     </b-container>
 
@@ -37,23 +36,22 @@ export default {
           title: "اطلب استاذ",
           paragraph: `مع علم وتعلم، يمكنك البحث عن طلاب مميزين وقادرين على منحك الفائدة العلمية في المواد التي 
           تبحث عن من يعلمك اياها`,
-          icon: '/icons/teacher-student.png',
-          link: "/teaching-materials"
+          icon: "/icons/teacher-student.png",
+          link: "/show-teachers",
         },
-         {
-          title: "تدريس طلاب جامعات",
+        {
+          title: "تدريس طلاب الجامعة",
           paragraph: `ان كنت متمكن من بعض المواد الجامعية، وعندك رغبة في تدريسها لزملائك من السنين السابقة،
           ، يمكنك التسجيل كأستاذ هنا`,
-          icon: '/icons/university.png',
-          link: "/teaching-materials"
+          icon: "/icons/university.png",
+          link: "/teaching-materials",
         },
-         {
+        {
           title: "تدريس مدارس حكومية",
           paragraph: `ان كنت قادرا على اعطاء مادة معينة في مدرسة حكومية، 
            لطلاب مرحلة التعليم الأساسية والاعدادية، يمكنك الان التسجيل في المنصة كأستاذ لهذه المادة `,
-          icon: '/icons/school.png',
-          link: "/teaching-materials"
-
+          icon: "/icons/school.png",
+          link: "/teaching-materials",
         },
       ],
     };

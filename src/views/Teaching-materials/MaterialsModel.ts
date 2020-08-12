@@ -1,4 +1,4 @@
-import Material from './Material'
+import Material from './MaterialModel'
 
 export default class MaterialsModel {
     public materials: Material[];

@@ -29,6 +29,21 @@ const routes: RouteConfig[] = [
     name: 'teaching-materials',
     component: () => import('@/views/Teaching-materials/index.vue'),
   },
+  {
+    path: '/show-teachers',
+    name: 'show-teachers',
+    component: () => import('@/views/show-teachers/index.vue'),
+  },
+  {
+    path: '/complete-teacher-info',
+    name: 'complete-teacher-info',
+    component: () => import('@/views/complete-teacher-info/index.vue'),
+  },
+  {
+    path: '/student-notification',
+    name: 'student-notification',
+    component: () => import('@/views/student-notification/index.vue'),
+  },
 ];
 
 const router = new VueRouter({

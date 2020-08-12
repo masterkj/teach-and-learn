@@ -1,4 +1,4 @@
-export default class Material {
+export default class MaterialModel {
     public id: number
     public name:string
 

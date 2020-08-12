@@ -10,9 +10,11 @@
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
           <b-nav-item-dropdown text="الخدمات" left>
-            <b-dropdown-item class="text-right" href="#">اطلب استاذ</b-dropdown-item>
-            <b-dropdown-item class="text-right" href="#">تدريس طلاب جامعات</b-dropdown-item>
-            <b-dropdown-item class="text-right" href="#">تدريس مدارس حكومية</b-dropdown-item>
+            <b-dropdown-item class="text-right" to="/show-teachers">اطلب استاذ</b-dropdown-item>
+            <b-dropdown-item class="text-right" to="/teaching-materials">تدريس طلاب الجامعة</b-dropdown-item>
+            <b-dropdown-item class="text-right" to="/signin">تدريس مدارس حكومية</b-dropdown-item>
+            <b-dropdown-item class="text-right" to="/student-notification">اشعارات طالب</b-dropdown-item>
+
           </b-nav-item-dropdown>
         </b-navbar-nav>
 
