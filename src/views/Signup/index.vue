@@ -1,14 +1,14 @@
 <template>
   <div class="d-flex justify-content-center align-items-center mb-4">
-    <b-form @submit="onSubmit" class="w-50 mt-4">
+    <b-form @submit="onSubmit" class="w-50 mt-4 text-right">
       <h1 class="text-center text-lg">تسجيل الحساب</h1>
       <div class="row">
-        <b-form-group class="col-lg-6" label="اسم المستخدم">
+        <b-form-group class="col-lg-6" label="البريد الالكتروني">
           <b-form-input
-            v-model="signUpModel.name"
-            type="text"
+            v-model="signUpModel.email"
+            type="email"
             required
-            placeholder="أدخل اسم مستخدم خاص بك"
+            placeholder="أدخل بريدك الالكتروني"
           ></b-form-input>
         </b-form-group>
         <b-form-group class="col-lg-6" label="رقم الهاتف">
@@ -19,15 +19,14 @@
             placeholder="أدخل رفم هاتفك"
           ></b-form-input>
         </b-form-group>
-        <b-form-group class="col-lg-6" label="البريد الالكتروني">
+        <b-form-group class="col-lg-6" label="تأكيد كلمة المرور">
           <b-form-input
-            v-model="signUpModel.email"
-            type="email"
+            v-model="signUpModel.passwordConfirmation"
+            type="password"
             required
-            placeholder="أدخل بريدك الالكتروني"
+            placeholder="أكد كلمة المرور"
           ></b-form-input>
         </b-form-group>
-
         <b-form-group class="col-lg-6" label="كلمة المرور">
           <b-form-input
             v-model="signUpModel.password"
@@ -36,19 +35,8 @@
             placeholder="أدخل كلمة المرور"
           ></b-form-input>
         </b-form-group>
-
-        <b-form-group class="col-lg-12" label="تأكيد كلمة المرور">
-          <b-form-input
-            v-model="signUpModel.password"
-            type="password"
-            required
-            placeholder="أكد كلمة المرور"
-          ></b-form-input>
-        </b-form-group>
-
       </div>
-      <b-button  type="submit" variant="primary">تأكيد</b-button>
-
+      <b-button type="submit" variant="primary">تأكيد</b-button>
     </b-form>
   </div>
 </template>

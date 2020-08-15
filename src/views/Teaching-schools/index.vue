@@ -21,8 +21,12 @@
         :options="materialsModel.materials"
       ></multiselect>
       <button class="btn btn-primary mt-3" @click="submit">تأكيد</button>
-
-      <b-table
+      <div class="row">
+        <div class="col-lg-4" v-for="school in schools" :key="school.id">
+          <school-card :profile="school" />
+        </div>
+      </div>
+      <!-- <b-table
         class="mt-3"
         :fields="fields"
         striped
@@ -35,15 +39,19 @@
             enroll
           </b-button>
         </template>
-      </b-table>
+      </b-table> -->
     </div>
   </div>
 </template>
 
 <script>
 import MaterialsModel from "./MaterialsModel";
+import schoolCard from "@/components/school-card";
 import Material from "./MaterialModel";
 export default {
+  components: {
+    schoolCard,
+  },
   data() {
     return {
       materialsModel: new MaterialsModel([
@@ -59,8 +67,12 @@ export default {
     submit() {
       this.submitClicked = true;
       this.schools = [
-        { name: "عبد الرحمن الكواكبي", id: 1 },
-        { name: "عمر أبو ريشة", id: 2 },
+        {
+          name: "عبد الرحمن الكواكبي",
+          description: "مدرسة اعدادية للبنين",
+          id: 1,
+        },
+        { name: "عمر أبو ريشة", description: "مدرسة اعدادية للبنين", id: 2 },
       ];
     },
   },

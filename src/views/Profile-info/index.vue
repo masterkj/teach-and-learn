@@ -14,7 +14,13 @@
           </div>
         </div>
         <div class="d-flex justify-content-around align-items-center mt-4">
-          <router-link class="btn btn-primary" to="/profile-edit" >تعديل الملف الشخصي</router-link>
+          <router-link
+            v-if="!isQuery"
+            class="btn btn-primary"
+            to="/profile-edit"
+            >تعديل الملف الشخصي</router-link
+          >
+          <button v-else class="btn btn-primary" @click="enroll">تسجيل</button>
           <p class="profile__bottom"><b>التقييم:</b> {{ profile.rate }}</p>
           <p class="profile__bottom"><b> السنة: </b> {{ profile.year }}</p>
         </div>
@@ -34,7 +40,14 @@ export default {
         year: 2,
         rate: 2,
       },
+      isQuery: false,
     };
+  },
+  mounted() {
+    this.isQuery = this.$route.query.userId != undefined;
+  },
+  methods: {
+    enroll() {},
   },
 };
 </script>

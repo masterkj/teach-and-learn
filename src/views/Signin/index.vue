@@ -1,13 +1,13 @@
 <template>
   <div class="d-flex justify-content-center align-items-center mb-4">
-    <b-form class=" mt-4" @submit="onSubmit">
+    <b-form class=" mt-4 text-right" @submit="onSubmit">
       <h1 class="mb-3 text-center text-lg">تسجيل الدخول</h1>
-      <b-form-group label="البريد الالكتروني">
+      <b-form-group label="رقم الهاتف">
         <b-form-input
-          v-model="signInModel.email"
+          v-model="signInModel.phoneNumber"
           type="email"
           required
-          placeholder="أدخل بريدك الالكتروني"
+          placeholder="أدخل رقم هاتفك"
         ></b-form-input>
       </b-form-group>
 
@@ -26,8 +26,9 @@
         >
       </b-form-group>
 
-      <b-button type="submit" variant="primary">تسجيل الدخول</b-button>
       <a href="#" class="mx-3">نسيت كلمة المرور؟</a>
+      <b-button type="submit" variant="primary">تسجيل الدخول</b-button>
+
     </b-form>
   </div>
 </template>

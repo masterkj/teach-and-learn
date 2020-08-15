@@ -14,13 +14,22 @@
       >
         <template v-slot:first>
           <b-form-select-option :value="null" disabled
-            >-- Please select a year --</b-form-select-option
+            >-- رجاءا اختر مادة --</b-form-select-option
           >
         </template>
       </b-form-select>
       <button class="btn btn-primary mt-3" @click="search">search</button>
-      <b-table
-      class="mt-3"
+      <div class="row my-4">
+      <div
+          class="col-lg-4 col-sm-2"
+          v-for="teacher in teachers"
+          :key="teacher.id"
+        >
+          <teacherCard :profile="teacher" />
+        </div>
+      </div>
+      <!-- <b-table
+        class="mt-3"
         :fields="fields"
         striped
         hover
@@ -28,17 +37,20 @@
         v-if="teachers.length != 0"
       >
         <template v-slot:cell(actions)="row">
-          <b-button size="sm" @click="enroll(row.item.id)" class="mr-2">
-            enroll
-          </b-button>
+
         </template>
-      </b-table>
+      </b-table> -->
     </div>
   </div>
 </template>
 
 <script>
+import teacherCard from "@/components/profile-card";
+
 export default {
+  components: {
+    teacherCard,
+  },
   data() {
     return {
       fields: ["name", "actions"],
@@ -73,21 +85,28 @@ export default {
       this.teachers = [
         {
           name: "teacher 1",
+          image:
+            "https://cdn.business2community.com/wp-content/uploads/2014/04/profile-picture.jpg",
+
           id: 1,
         },
         {
           name: "teacher 2",
+          image:
+            "https://cdn.business2community.com/wp-content/uploads/2014/04/profile-picture.jpg",
+
           id: 2,
         },
         {
           name: "teacher 3",
+          image:
+            "https://cdn.business2community.com/wp-content/uploads/2014/04/profile-picture.jpg",
+
           id: 3,
         },
       ];
     },
-    enroll(id) {
-        console.log(id)
-    }
+
   },
 };
 </script>
