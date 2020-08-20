@@ -1,0 +1,18 @@
+.filling
+    @include media-breakpoint-down(md)
+        display: none
+    background-color: lighten($primary, 6 )
+    width: 415px
+    height: 100vh
+    padding: 30px 64px 30px
+    color: darken($primary, 20)
+    &__text
+        font-weight: 700
+        
+
+.form-with-filling-width
+
+  width: calc(100vw - 415px)
+  @include media-breakpoint-down(md)
+    width: 100vw
+  height: 100vh

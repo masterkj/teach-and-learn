@@ -26,20 +26,6 @@
           <school-card :profile="school" />
         </div>
       </div>
-      <!-- <b-table
-        class="mt-3"
-        :fields="fields"
-        striped
-        hover
-        :items="schools"
-        v-if="submitClicked"
-      >
-        <template v-slot:cell(actions)="row">
-          <b-button size="sm" @click="enroll(row.item.id)" class="mr-2">
-            enroll
-          </b-button>
-        </template>
-      </b-table> -->
     </div>
   </div>
 </template>

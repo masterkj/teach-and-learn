@@ -1,12 +1,19 @@
 <template>
   <div id="app">
+    <navbar />
     <transition name="fade" mode="out-in">
-
-    <router-view />
+      <router-view />
     </transition>
-
   </div>
 </template>
+<script>
+import navbar from "@/components/navbar";
+export default {
+  components: {
+    navbar,
+  },
+};
+</script>
 <style>
 .fade-enter-active,
 .fade-leave-active {

@@ -1,48 +1,70 @@
 <template>
-  <div>
-    <b-navbar toggleable="lg" type="dark" variant="dark">
-      <b-navbar-brand to="/">
-        <img class="logo" src="/images/logo.png" />
-      </b-navbar-brand>
+  <b-navbar sticky toggleable="lg" class="py-1" type="dark" variant="dark">
+    <b-navbar-brand class="py-0" to="/">
+      <img class="logo " src="/images/logo.png" />
+    </b-navbar-brand>
 
-      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+    <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
-      <b-collapse id="nav-collapse" is-nav>
-        <b-navbar-nav>
-          <b-nav-item-dropdown text="الخدمات" left>
-            <b-dropdown-item class="text-right" to="/show-teachers">اطلب استاذ</b-dropdown-item>
-            <b-dropdown-item class="text-right" to="/teaching-materials">تدريس طلاب الجامعة</b-dropdown-item>
-            <b-dropdown-item class="text-right" to="/signin">تدريس مدارس حكومية</b-dropdown-item>
-            <b-dropdown-item class="text-right" to="/student-notification">اشعارات طالب</b-dropdown-item>
+    <b-collapse id="nav-collapse" is-nav>
+      <b-navbar-nav
+        v-if="signedIn"
+        class=" w-100 d-flex justify-content-center"
+      >
+        <b-nav-item class="mx-2 text-center" to="/teaching-schools"
+          >قسم المدارس</b-nav-item
+        >
+        <b-nav-item class="mx-2 text-center" to="/university-services"
+          >قسم الجامعات</b-nav-item
+        >
+        <b-nav-item class="mx-2 text-center" to="/teaching-schools"
+          >علم و تعلم</b-nav-item
+        >
+      </b-navbar-nav>
 
+      <b-navbar-nav class="ml-auto">
+        <template v-if="!signedIn">
+          <b-nav-item to="/signin" class="mx-2 ">تسجيل الدخول</b-nav-item>
+          <b-nav-item to="/signup" class="mx-2">تسجيل حساب</b-nav-item>
+        </template>
+        <template v-else>
+          <b-nav-item-dropdown class="text-right" right>
+            <template class="py-0" v-slot:button-content>
+              omar <img class="profile-pic--sm ml-2" :src="profilePic" />
+            </template>
+            <b-dropdown-item to="/profile-info">ملفي الشخصي</b-dropdown-item>
+            <b-dropdown-item to="/student-notification"
+              >الاشعارات</b-dropdown-item
+            >
+
+            <b-dropdown-item @click="signOut">تسجيل الخروج</b-dropdown-item>
           </b-nav-item-dropdown>
-        </b-navbar-nav>
-
-        <!-- Right aligned nav items -->
-        <b-navbar-nav class="ml-auto">
-          <b-nav-item-dropdown text="اللغة" left>
-            <b-dropdown-item class="text-right" href="#">عربية</b-dropdown-item>
-            <b-dropdown-item class="text-right" href="#">انجليزي</b-dropdown-item>
-          </b-nav-item-dropdown>
-          <b-nav-item to="/profile-info" right>ملفي الشخصي</b-nav-item>
-          <b-nav-item to="/signin" right>تسجيل الدخول</b-nav-item>
-          <b-nav-item to="/signup" right>تسجيل حساب</b-nav-item>
-
-          <!-- <b-nav-item-dropdown right>
-          <template v-slot:button-content>
-            <em>User</em>
-          </template>
-          <b-dropdown-item href="#">Profile</b-dropdown-item>
-          <b-dropdown-item href="#">Sign Out</b-dropdown-item>
-        </b-nav-item-dropdown> -->
-        </b-navbar-nav>
-      </b-collapse>
-    </b-navbar>
-  </div>
+        </template>
+      </b-navbar-nav>
+    </b-collapse>
+  </b-navbar>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      signedIn: true,
+      profilePic:
+        "https://cdn.business2community.com/wp-content/uploads/2014/04/profile-picture.jpg",
+    };
+  },
+  methods: {
+    signOut() {
+      this.signedIn = false;
+    },
+  },
+};
 </script>
 
-<style></style>
+<style>
+.dropdown-toggle {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+</style>

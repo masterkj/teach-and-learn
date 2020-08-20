@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <div class="row">
         <div
-          class="col-md-4 m-0 p-0"
+          class="col-md-6 m-0 p-0"
           v-for="section in sections"
           :key="section.title"
         >
@@ -21,39 +21,29 @@
 </template>
 
 <script>
-import serviceCard from "./service-card";
 import layoutItem from "@/components/layout-item";
 export default {
   components: {
-    serviceCard,
     layoutItem,
   },
   data() {
     return {
       sections: [
-        {
-          bg: "/images/layout-school-section.jpg",
-          title: " المدارس الحكومية",
-          paragraph: `ان كنت قادرا على اعطاء مادة معينة في مدرسة حكومية، 
-           لطلاب مرحلة التعليم الأساسية والاعدادية، يمكنك الان التسجيل في المنصة كأستاذ لهذه المادة `,
-          link: "/teaching-schools",
-          color: "primary",
-        },
-        {
-          bg: "/images/layout-univirsity-section.jpg",
-          title: " الخدمات الجامعية",
+        { 
+          bg: "/images/layout-teach-section.jpg",
+          title: "علم غيرك",
           paragraph: `ان كنت متمكن من بعض المواد الجامعية، وعندك رغبة في تدريسها لزملائك من السنين السابقة،
           ، يمكنك التسجيل كأستاذ هنا`,
-          link: "/university-services",
-          color: "light",
+          link: "university-services/teach-marerials",
+          color: 'light'
         },
         {
-          bg: "/images/layout-collaboration-section.jpg",
-          title: "علم و تعلم",
+          bg: "/images/layout-learn-section.jpg",
+          title: "تعلم من غيرك",
           paragraph: `مع علم وتعلم، يمكنك البحث عن طلاب مميزين وقادرين على منحك الفائدة العلمية في المواد التي 
           تبحث عن من يعلمك اياها`,
-          link: "/show-teachers",
-          color: "secondary",
+          link: "university-services/show-teachers",
+          color: 'secondary'
         },
       ],
     };
