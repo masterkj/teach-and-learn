@@ -1,12 +1,16 @@
 .large-hero
     position: relative
     overflow: auto
+    height: $full-height !important
     &__text
         position: absolute
         top: 40%
         left: 50%
         transform: translate(-50%, -50%)
         color: white
-    
-.large-hero__text
- 
+    &__image
+        width: 100vw
+        height: $full-height
+        object-fit: cover
+        object-position: 50% 20%
+        position: relative

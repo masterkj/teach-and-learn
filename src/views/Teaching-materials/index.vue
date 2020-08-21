@@ -1,10 +1,12 @@
 <template>
-  <div
-    class="d-flex justify-content-center align-items-center flex-column mb-4"
-  >
-    <div class="w-50  justify-content-center">
-      <h1 class="text-center text-lg mt-4">المواد المراد تدريسها</h1>
-      <p class="text-md mt-2">
+  <div class="search-large-hero">
+    <img
+      class="search-large-hero__bg"
+      src="/images/teach-materials-bar.jpg"
+    />
+    <div class="search-large-hero__content">
+      <h1 class="text-center mt-4">المواد المراد تدريسها</h1>
+      <p class="mt-2">
         يمكنك اختيار المواد التي تتقنها في كليتك لتدرسها لغيرك من الطلاب
       </p>
       <multiselect
@@ -14,13 +16,16 @@
         :hideSelected="true"
         :multiple="true"
         label="name"
+        class="search-large-hero__searchbox"
         placeholder="اختر المواد المراد تدريسها"
         :searchable="true"
         value="id"
         v-model="materialsModel.pickedMaterials"
         :options="materialsModel.materials"
       ></multiselect>
-      <button class="btn btn-primary mt-3" @click="submit">تأكيد </button>
+      <button class="btn btn-primary search-large-hero__btn" @click="submit">
+        تأكيد
+      </button>
     </div>
   </div>
 </template>
@@ -38,15 +43,10 @@ export default {
     };
   },
   methods: {
-    submit(){
-
-    }
+    submit() {
+      this.$router.push('/university-services/teaching-materials/complete-teacher-info')
+    },
   },
-  watch: {
-      "materialsModel.pickedMaterials"(neww, old){
-          console.log(old)
-      }
-  }
 };
 </script>
 

@@ -62,9 +62,11 @@
         </b-form-group>
       </div>
 
-      <button type="submit" class="btn btn-primary h-50 ">
-        Submit
-      </button>
+      <div class="text-right">
+        <button type="submit" class="btn btn-primary h-50 text-right">
+          تأكيد
+        </button>
+      </div>
     </b-form>
   </div>
 </template>

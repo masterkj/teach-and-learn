@@ -1,11 +1,10 @@
 <template>
-  <div
-    class="d-flex justify-content-center align-items-center flex-column mb-4"
-  >
-    <div class="w-50  justify-content-center">
-      <h1 class="text-center text-lg mt-4">المواد المراد تدريسها</h1>
-      <p class="text-md mt-2 text-center">
-        يمكنك اختيار المواد التي يمكنك تدريسها لطلاب المدارس لتقوم بتقديم الدعم
+  <div class="search-large-hero">
+    <img class="search-large-hero__bg" src="/images/teach-schools-bar.jpg" />
+    <div class="search-large-hero__content">
+      <h1 class="text-center mt-4">المواد المراد تدريسها</h1>
+      <p class="mt-2 text-center">
+        يمكنك اختيار المواد التي يمكنك تدريسها لطلاب المدارس
       </p>
       <multiselect
         track-by="id"
@@ -13,6 +12,7 @@
         :clear-on-select="true"
         :hideSelected="true"
         :multiple="true"
+        class="search-large-hero__searchbox"
         label="name"
         placeholder="اختر المواد المراد تدريسها"
         :searchable="true"
@@ -20,13 +20,15 @@
         v-model="materialsModel.pickedMaterials"
         :options="materialsModel.materials"
       ></multiselect>
-      <button class="btn btn-primary mt-3" @click="submit">تأكيد</button>
-      <div class="row">
+      <button class="btn btn-primary search-large-hero__btn" @click="submit">
+        تأكيد
+      </button>
+    </div>
+    <!-- <div class="row">
         <div class="col-lg-4" v-for="school in schools" :key="school.id">
           <school-card :profile="school" />
         </div>
-      </div>
-    </div>
+      </div> -->
   </div>
 </template>
 
@@ -51,20 +53,14 @@ export default {
   },
   methods: {
     submit() {
+      this.$router.push({
+        path: '/teaching-schools/results',
+        query: {
+          materialIds: this.materialsModel.materials.map(e => e.id)
+        }
+      })
       this.submitClicked = true;
-      this.schools = [
-        {
-          name: "عبد الرحمن الكواكبي",
-          description: "مدرسة اعدادية للبنين",
-          id: 1,
-        },
-        { name: "عمر أبو ريشة", description: "مدرسة اعدادية للبنين", id: 2 },
-      ];
-    },
-  },
-  watch: {
-    "materialsModel.pickedMaterials"(neww, old) {
-      console.log(old);
+     
     },
   },
 };

@@ -1,8 +1,13 @@
 .profile-card
     text-align: center
     margin-top: 50px
-    border: black solid 1px  !important
+    border-radius: 0
+    padding: 0px 10px 0px 10px
+    paddimg: 30px 10px 0px 10px
+    background-color: $lighten-dark
     height: auto !important
+    &--fixed-height
+        height: 150px !important
     &__image
         transform: translateY(-50%)
         margin-bottom: -50px
@@ -16,8 +21,11 @@
         border-style: solid
         background-color: white
         border-color: $primary
-        border-width: 2px
-        padding: 1px
+        border-width: 7px
+
+    &__name 
+        font-weight: 700
+        color: $primary
     &__social
         *
             margin: 2px 4px

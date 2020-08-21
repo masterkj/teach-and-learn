@@ -1,16 +1,18 @@
 <template>
-  <div
-    class="d-flex justify-content-center align-items-center flex-column mb-4"
-  >
-    <div class="w-50  justify-content-center">
-      <h1 class="text-center text-lg mt-4">اطلب استاذ</h1>
+  <div class="search-large-hero">
+    <img
+      class="search-large-hero__bg"
+      src="/images/oreder-teacher-search.jpg"
+    />
+    <div class="search-large-hero__content">
+      <h1 class="mb-4 text-center">اطلب استاذ</h1>
       <b-form-select
-        v-model="pickedYear"
+        v-model="pickedMaterial"
         placeholder="-- please select a year --"
         :options="materials"
         value-field="id"
         text-field="name"
-        class="mt-3"
+        class="search-large-hero__searchbox"
       >
         <template v-slot:first>
           <b-form-select-option :value="null" disabled
@@ -18,42 +20,17 @@
           >
         </template>
       </b-form-select>
-      <button class="btn btn-primary mt-3" @click="search">search</button>
-      <div class="row my-4">
-      <div
-          class="col-lg-4 col-sm-2"
-          v-for="teacher in teachers"
-          :key="teacher.id"
-        >
-          <teacherCard :profile="teacher" />
-        </div>
-      </div>
-      <!-- <b-table
-        class="mt-3"
-        :fields="fields"
-        striped
-        hover
-        :items="teachers"
-        v-if="teachers.length != 0"
-      >
-        <template v-slot:cell(actions)="row">
-
-        </template>
-      </b-table> -->
+      <button class="btn btn-primary search-large-hero__btn" @click="search">
+        search
+      </button>
     </div>
   </div>
 </template>
 
 <script>
-import teacherCard from "@/components/profile-card";
-
 export default {
-  components: {
-    teacherCard,
-  },
   data() {
     return {
-      fields: ["name", "actions"],
       materials: [
         {
           name: " السنة الأولى -- تحليل 2",
@@ -76,37 +53,20 @@ export default {
           id: 5,
         },
       ],
-      pickedYear: null,
-      teachers: [],
+      pickedMaterial: null,
     };
   },
   methods: {
     search() {
-      this.teachers = [
-        {
-          name: "teacher 1",
-          image:
-            "https://cdn.business2community.com/wp-content/uploads/2014/04/profile-picture.jpg",
-
-          id: 1,
+      this.$router.push({
+        path: "/university-services/show-teachers/results",
+        query: {
+          materialId: this.pickedMaterial,
+          materialName: this.materials.find((e) => (e.id = this.pickedMaterial))
+            .name,
         },
-        {
-          name: "teacher 2",
-          image:
-            "https://cdn.business2community.com/wp-content/uploads/2014/04/profile-picture.jpg",
-
-          id: 2,
-        },
-        {
-          name: "teacher 3",
-          image:
-            "https://cdn.business2community.com/wp-content/uploads/2014/04/profile-picture.jpg",
-
-          id: 3,
-        },
-      ];
+      });
     },
-
   },
 };
 </script>

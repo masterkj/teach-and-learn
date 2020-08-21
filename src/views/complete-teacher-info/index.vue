@@ -3,8 +3,8 @@
     class="d-flex justify-content-center align-items-center flex-column mb-4"
   >
     <div class="w-50  justify-content-center">
-      <h1 class="text-center mt-4">اكمل معلوماتك الشخصية كأستاذ</h1>
-      <b-form @submit="onSubmit" >
+      <h2 class="text-center mt-4">اكمل معلوماتك الشخصية كأستاذ</h2>
+      <b-form @submit="onSubmit">
         <b-form-group label="الصورة الشخصية">
           <b-form-file
             v-model="info.pic"
@@ -22,7 +22,9 @@
             drop-placeholder="أفلت الملف هنا"
           ></b-form-file>
         </b-form-group>
-        <b-button type="submit" variant="primary">تأكيد</b-button>
+        <div class="text-right">
+          <b-button type="submit" variant="primary">تأكيد</b-button>
+        </div>
       </b-form>
     </div>
   </div>
@@ -36,10 +38,8 @@ export default {
     };
   },
   methods: {
-      onSubmit(){
-
-      }
-  }
+    onSubmit() {},
+  },
 };
 </script>
 

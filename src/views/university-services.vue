@@ -34,7 +34,7 @@ export default {
           title: "علم غيرك",
           paragraph: `ان كنت متمكن من بعض المواد الجامعية، وعندك رغبة في تدريسها لزملائك من السنين السابقة،
           ، يمكنك التسجيل كأستاذ هنا`,
-          link: "university-services/teach-marerials",
+          link: "university-services/teaching-materials",
           color: 'light'
         },
         {

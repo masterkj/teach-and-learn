@@ -1,6 +1,6 @@
 <template>
-  <b-navbar sticky toggleable="lg" class="py-1" type="dark" variant="dark">
-    <b-navbar-brand class="py-0" to="/">
+  <b-navbar  sticky toggleable="sm" class="py-1" type="dark" variant="dark">
+    <b-navbar-brand class="py-0 pl-2" to="/">
       <img class="logo " src="/images/logo.png" />
     </b-navbar-brand>
 
@@ -17,7 +17,7 @@
         <b-nav-item class="mx-2 text-center" to="/university-services"
           >قسم الجامعات</b-nav-item
         >
-        <b-nav-item class="mx-2 text-center" to="/teaching-schools"
+        <b-nav-item class="mx-2 text-center" to="/teaching-and-learn"
           >علم و تعلم</b-nav-item
         >
       </b-navbar-nav>
@@ -41,7 +41,9 @@
           </b-nav-item-dropdown>
         </template>
       </b-navbar-nav>
+
     </b-collapse>
+
   </b-navbar>
 </template>
 
@@ -49,7 +51,7 @@
 export default {
   data() {
     return {
-      signedIn: true,
+      signedIn: false,
       profilePic:
         "https://cdn.business2community.com/wp-content/uploads/2014/04/profile-picture.jpg",
     };

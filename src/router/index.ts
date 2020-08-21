@@ -56,12 +56,22 @@ const routes: RouteConfig[] = [
         component: () => import('@/views/Teaching-schools/index.vue'),
       },
       {
+        path: '/teaching-schools/results',
+        name: 'teaching-schools-results',
+        component: () => import('@/views/Teaching-schools/teaching-schools-results.vue'),
+      },
+      {
         path: '/university-services/show-teachers',
         name: 'show-teachers',
         component: () => import('@/views/show-teachers/index.vue'),
       },
       {
-        path: '/complete-teacher-info',
+        path: '/university-services/show-teachers/results',
+        name: 'show-teachers-results',
+        component: () => import('@/views/show-teachers/show-teachers-results.vue'),
+      },
+      {
+        path: '/university-services/teaching-materials/complete-teacher-info',
         name: 'complete-teacher-info',
         component: () => import('@/views/complete-teacher-info/index.vue'),
       },
