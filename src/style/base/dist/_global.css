@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap");
+legend, input, .dropdown-item {
+  text-align: right !important;
+}
+
+table, p {
+  direction: rtl;
+}
+
+.custom-select {
+  direction: rtl;
+}
+
+body {
+  font-family: "Cairo", sans-serif !important;
+}
+
+.modal-header, .modal-body, .modal-footer {
+  background-color: #313131;
+}
+
+.modal-header .close {
+  color: #fff;
+}
+.modal-header .close:hover {
+  color: #fff;
+}
+
+.logo {
+  width: 70px;
+  height: auto;
+}
+.logo--md {
+  width: 140px;
+}
+
+.relative {
+  position: relative;
+}

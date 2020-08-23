@@ -15,7 +15,7 @@
         class="search-large-hero__searchbox"
         label="name"
         placeholder="اختر المواد المراد تدريسها"
-        :searchable="true"
+        :searchable="false"
         value="id"
         v-model="materialsModel.pickedMaterials"
         :options="materialsModel.materials"
@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import http from "@/repo/teachAndLearnHttp";
 import MaterialsModel from "./MaterialsModel";
 import schoolCard from "@/components/school-card";
 import Material from "./MaterialModel";
@@ -47,20 +48,33 @@ export default {
         new Material(3, "5"),
       ]),
       schools: [],
-      submitClicked: false,
       fields: ["name", "actions"],
     };
   },
+  async mounted() {
+    this.materialsModel = await this.fetchMaterials();
+  },
   methods: {
     submit() {
-      this.$router.push({
-        path: '/teaching-schools/results',
-        query: {
-          materialIds: this.materialsModel.materials.map(e => e.id)
-        }
-      })
-      this.submitClicked = true;
-     
+      http()
+        .post("schools/material/select", {
+          material: this.materialsModel.materials.map((e) => e.id),
+        })
+        .then(() => {
+          this.$router.push({
+            path: "/teaching-schools/results",
+            query: {
+              materialIds: this.materialsModel.materials.map((e) => e.id),
+            },
+          });
+        });
+    },
+    async fetchMaterials() {
+      let { data } = await http().get("schools/material/select");
+      let materials = data.materials.map(
+        (material) => new Material(material.id, material.name)
+      );
+      return new MaterialsModel(materials);
     },
   },
 };

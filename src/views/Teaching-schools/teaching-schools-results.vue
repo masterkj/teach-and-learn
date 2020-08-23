@@ -29,15 +29,15 @@ export default {
   methods: {
     getResults() {
       this.schools = [
-        {
-          name: "عبد الرحمن الكواكبي",
-          description: "مدرسة اعدادية للبنين",
-          id: 1,
-        },
-        { name: "عمر أبو ريشة", description: "مدرسة اعدادية للبنين", id: 2 },
-                { name: "عمر أبو ريشة", description: "مدرسة اعدادية للبنين", id: 2 },
-        { name: "عمر أبو ريشة", description: "مدرسة اعدادية للبنين", id: 2 },
-        { name: "عمر أبو ريشة", description: "مدرسة اعدادية للبنين", id: 2 },
+        // {
+        //   name: "عبد الرحمن الكواكبي",
+        //   description: "مدرسة اعدادية للبنين",
+        //   id: 1,
+        // },
+        // { name: "عمر أبو ريشة", description: "مدرسة اعدادية للبنين", id: 2 },
+        //         { name: "عمر أبو ريشة", description: "مدرسة اعدادية للبنين", id: 2 },
+        // { name: "عمر أبو ريشة", description: "مدرسة اعدادية للبنين", id: 2 },
+        // { name: "عمر أبو ريشة", description: "مدرسة اعدادية للبنين", id: 2 },
 
       ];
     },

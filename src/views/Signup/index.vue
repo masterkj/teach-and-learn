@@ -12,7 +12,7 @@
     <div
       class="form-with-filling-width d-flex justify-content-center align-items-center"
     >
-      <b-form @submit="onSubmit" class="w-50 mt-4 text-right">
+      <b-form class="w-50 mt-4 text-right">
         <p class="text-right mb-4 mt-4">
           عضو مسبقا؟ <router-link to="/signin">تسجيل الدخول</router-link>
         </p>
@@ -52,7 +52,7 @@
             ></b-form-input>
           </b-form-group>
         </div>
-        <b-button type="submit" variant="primary">تأكيد</b-button>
+        <b-button @click="submit" variant="primary">تأكيد</b-button>
       </b-form>
     </div>
   </div>
@@ -60,6 +60,8 @@
 
 <script>
 import SignUpModel from "./SignUpModel";
+import http from "@/repo/teachAndLearnHttp";
+import { mapActions, mapMutations } from "vuex";
 export default {
   data() {
     return {
@@ -67,7 +69,25 @@ export default {
     };
   },
   methods: {
-    onSubmit() {},
+    ...mapActions("Auth", ["signIn"]),
+    ...mapMutations("Profile", ["completeUpdate"]),
+    async submit() {
+      let fd = new  FormData();
+      fd.append('phone_number',this.signUpModel.phoneNumber)
+      fd.append('password', this.signUpModel.password)
+      if (this.signUpModel.password != this.signUpModel.passwordConfirmation)
+        window.alert("كلمة المرور غير متشابهة");
+      else {
+         let { data } = await http().post("user/register",  fd);
+      if (data.access_token != undefined) this.signIn(data.access_token);
+      if (data.user != undefined) {
+        this.completeUpdate(data.user);
+      }
+      if (data.user != undefined) {
+        this.$router.push("/profile-edit");
+      }
+      }
+    },
   },
 };
 </script>

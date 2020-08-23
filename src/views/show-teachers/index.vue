@@ -21,14 +21,19 @@
         </template>
       </b-form-select>
       <button class="btn btn-primary search-large-hero__btn" @click="search">
-        search
+        بحث
       </button>
     </div>
   </div>
 </template>
 
 <script>
+import http from "@/repo/teachAndLearnHttp";
+
 export default {
+  mounted() {
+    this.fetchMaterials()
+  },
   data() {
     return {
       materials: [
@@ -67,6 +72,10 @@ export default {
         },
       });
     },
+    async fetchMaterials() {
+      let {data} = await http().get('subject/select')
+      this.materials = data.subjects
+    }
   },
 };
 </script>

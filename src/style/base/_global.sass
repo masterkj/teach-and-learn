@@ -4,7 +4,7 @@
     
 $primary: #00B0F0
 $secondary: #e84141
-$dark: #111
+$dark: #222
 $lighten-dark: lighten($dark, 6)
 
 $body-bg: $dark
@@ -16,5 +16,14 @@ $full-height: calc(100vh - 45px)
 $enable-shadows: true
 body
     font-family: 'Cairo', sans-serif !important
+
+.modal-header, .modal-body, .modal-footer
+    background-color: $lighten-dark
+
+.modal-header
+    .close
+        color: #fff
+        &:hover
+            color: #fff
 
 @import './classes'

@@ -4,3 +4,4 @@ import 'vue-multiselect/dist/vue-multiselect.min.css';
 
 // register globally
 Vue.component('multiselect', Multiselect)
+

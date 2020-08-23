@@ -1,9 +1,6 @@
 <template>
   <div class="search-large-hero">
-    <img
-      class="search-large-hero__bg"
-      src="/images/teach-materials-bar.jpg"
-    />
+    <img class="search-large-hero__bg" src="/images/teach-materials-bar.jpg" />
     <div class="search-large-hero__content">
       <h1 class="text-center mt-4">المواد المراد تدريسها</h1>
       <p class="mt-2">
@@ -11,14 +8,13 @@
       </p>
       <multiselect
         track-by="id"
-        :close-on-select="false"
-        :clear-on-select="true"
+        :searchable="false"
+        :close-on-select="true"
         :hideSelected="true"
         :multiple="true"
         label="name"
         class="search-large-hero__searchbox"
-        placeholder="اختر المواد المراد تدريسها"
-        :searchable="true"
+        tag-placeholder="اختر المواد المراد تدريسها"
         value="id"
         v-model="materialsModel.pickedMaterials"
         :options="materialsModel.materials"
@@ -33,18 +29,40 @@
 <script>
 import MaterialsModel from "./MaterialsModel";
 import Material from "./MaterialModel";
+import http from "@/repo/teachAndLearnHttp";
 export default {
+  mounted() {
+    this.getMaterials();
+  },
   data() {
     return {
-      materialsModel: new MaterialsModel([
-        new Material(2, "s"),
-        new Material(3, "5"),
-      ]),
+      materialsModel: new MaterialsModel([new Material(1, "--")]),
     };
   },
   methods: {
-    submit() {
-      this.$router.push('/university-services/teaching-materials/complete-teacher-info')
+    async submit() {
+      if (this.materialsModel.materials.length == 0) alert("اختر مواد");
+      else {
+        http()
+          .post("subject/select", {
+            subject: this.materialsModel.materials.map(
+              (material) => material.id
+            ),
+          })
+          .then(() => {
+            this.$router.push(
+              "/university-services/teaching-materials/complete-teacher-info"
+            );
+          });
+      }
+    },
+    async getMaterials() {
+      let { data } = await http().get("subject/select");
+      let materials = [];
+      data.subjects.forEach((subject) =>
+        materials.push(new Material(subject.id, subject.name))
+      );
+      this.materialsModel = new MaterialsModel(materials);
     },
   },
 };

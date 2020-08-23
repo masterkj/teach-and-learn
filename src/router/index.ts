@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
-
+import store from '@/store/index.js'
 Vue.use(VueRouter);
 
 const routes: RouteConfig[] = [
@@ -11,7 +11,7 @@ const routes: RouteConfig[] = [
   },
   {
     path: '/signin',
-    name: 'Sign-in',
+    name: 'Signin',
     component: () => import('@/views/Signin/index.vue'),
   },
   {
@@ -66,6 +66,11 @@ const routes: RouteConfig[] = [
         component: () => import('@/views/show-teachers/index.vue'),
       },
       {
+        path: '/university-services/show-univirsities-teachers',
+        name: 'show-univirsities-teachers',
+        component: () => import('@/views/show-teachers/show-univirsities-teachers.vue'),
+      },
+      {
         path: '/university-services/show-teachers/results',
         name: 'show-teachers-results',
         component: () => import('@/views/show-teachers/show-teachers-results.vue'),
@@ -89,5 +94,18 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
+
+router.beforeEach((to, from, next) => {
+  if (to.name !== 'Signup'
+   && to.name !== 'Signin' && 
+   to.name !== 'Home' && 
+    !store.getters['Auth/isSignedIn']){ next({ name: 'Signin' })}
+  else
+    if ((to.name === 'Signup'
+    || to.name === 'Signin') && 
+      store.getters['Auth/isSignedIn']){ next({ name: 'Home' })}
+    else 
+   {next()}
+})
 
 export default router;

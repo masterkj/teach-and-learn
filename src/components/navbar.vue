@@ -30,7 +30,7 @@
         <template v-else>
           <b-nav-item-dropdown class="text-right" right>
             <template class="py-0" v-slot:button-content>
-              omar <img class="profile-pic--sm ml-2" :src="profilePic" />
+              {{pesonalProfile.user_name}} <img class="profile-pic--sm ml-2" :src="$fullUrl(pesonalProfile.user_name)" />
             </template>
             <b-dropdown-item to="/profile-info">ملفي الشخصي</b-dropdown-item>
             <b-dropdown-item to="/student-notification"
@@ -48,18 +48,22 @@
 </template>
 
 <script>
+import {mapState, mapActions} from 'vuex'
 export default {
   data() {
     return {
-      signedIn: false,
       profilePic:
         "https://cdn.business2community.com/wp-content/uploads/2014/04/profile-picture.jpg",
     };
   },
+  computed: mapState({
+    signedIn: state => state.Auth.isSignedIn,
+    pesonalProfile: state => state.Profile.profile
+  }),
   methods: {
-    signOut() {
-      this.signedIn = false;
-    },
+    ...mapActions('Auth', [
+    'signOut',
+  ]),
   },
 };
 </script>
