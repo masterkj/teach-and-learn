@@ -1,11 +1,14 @@
 .filling
-    @include media-breakpoint-down(md)
+    @include media-breakpoint-down(sm)
         display: none
     background-color: lighten($primary, 40 )
     width: 415px
     height: 100vh
     padding: 30px 64px 30px
     color: darken($primary, 20)
+    @include media-breakpoint-down(md)
+      padding: 30px 20px 30px
+
     &__text
         margin-top: 25px
         font-weight: 700

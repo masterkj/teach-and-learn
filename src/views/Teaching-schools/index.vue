@@ -44,8 +44,7 @@ export default {
   data() {
     return {
       materialsModel: new MaterialsModel([
-        new Material(2, "s"),
-        new Material(3, "5"),
+        new Material(null, "--"),
       ]),
       schools: [],
       fields: ["name", "actions"],
@@ -56,18 +55,14 @@ export default {
   },
   methods: {
     submit() {
-      http()
-        .post("schools/material/select", {
-          material: this.materialsModel.materials.map((e) => e.id),
-        })
-        .then(() => {
-          this.$router.push({
-            path: "/teaching-schools/results",
-            query: {
-              materialIds: this.materialsModel.materials.map((e) => e.id),
-            },
-          });
-        });
+      this.$router.push(
+        {
+          path: '/teaching-schools/results',
+          query: {
+            materialsIds: this.materialsModel.materials.map((material) => material.id)
+          }
+        }
+        )
     },
     async fetchMaterials() {
       let { data } = await http().get("schools/material/select");

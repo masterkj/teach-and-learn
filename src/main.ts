@@ -8,7 +8,6 @@ import './style/index.sass';
 let baseUrl = 'http://travel.test/'
 Vue.prototype.$baseUrl = baseUrl
 Vue.config.productionTip = false;
-
 Vue.prototype.$fullUrl = (url: string) =>  {
   return baseUrl + url
 }

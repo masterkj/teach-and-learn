@@ -13,6 +13,5 @@ export default () => {
     return axios.create({
       baseURL: "http://travel.test/api/v1/",
       timeout: 1000,
-      headers: { "X-Custom-Header": "foobar" },
     });
 };

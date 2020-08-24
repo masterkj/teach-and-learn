@@ -19,10 +19,7 @@ var _default = function _default() {
     }
   });else return _axios["default"].create({
     baseURL: "http://travel.test/api/v1/",
-    timeout: 1000,
-    headers: {
-      "X-Custom-Header": "foobar"
-    }
+    timeout: 1000
   });
 };
 

@@ -1,3 +1,4 @@
+import router from '@/router'
 export default {
   namespaced: true,
   state: () => ({
@@ -20,6 +21,7 @@ export default {
     signOut(ctx) {
       ctx.commit("updateAccessToken", "");
       ctx.commit("updateSignInStatus", false);
+      router.push('/signin')
     },
   },
   getters: {
