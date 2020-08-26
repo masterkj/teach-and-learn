@@ -6,29 +6,29 @@ export default {
     accessToken: "sss",
   }),
   mutations: {
-    updateAccessToken(state, accessToken) {
+    updateAccessToken(state: any, accessToken: any) {
       state.accessToken = "Bearer " + accessToken;
     },
-    updateSignInStatus(state, signedInStatus) {
+    updateSignInStatus(state: any, signedInStatus: any) {
       state.isSignedIn = signedInStatus;
     },
   },
   actions: {
-    signIn(ctx, accessToken) {
+    signIn(ctx: any, accessToken: any) {
       ctx.commit("updateAccessToken", accessToken);
       ctx.commit("updateSignInStatus", true);
     },
-    signOut(ctx) {
+    signOut(ctx: any) {
       ctx.commit("updateAccessToken", "");
       ctx.commit("updateSignInStatus", false);
       router.push('/signin')
     },
   },
   getters: {
-    accessToken(state) {
+    accessToken(state: any) {
       return state.accessToken;
     },
-    isSignedIn(state) {
+    isSignedIn(state: any) {
       return state.isSignedIn
     }
   },

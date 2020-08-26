@@ -2,7 +2,7 @@
 exports.__esModule = true;
 var vue_1 = require("vue");
 var vue_router_1 = require("vue-router");
-var index_js_1 = require("@/store/index.js");
+var store_1 = require("@/store");
 vue_1["default"].use(vue_router_1["default"]);
 var routes = [
     {
@@ -98,12 +98,12 @@ router.beforeEach(function (to, from, next) {
     if (to.name !== 'Signup'
         && to.name !== 'Signin' &&
         to.name !== 'Home' &&
-        !index_js_1["default"].getters['Auth/isSignedIn']) {
+        !store_1["default"].getters['Auth/isSignedIn']) {
         next({ name: 'Signin' });
     }
     else if ((to.name === 'Signup'
         || to.name === 'Signin') &&
-        index_js_1["default"].getters['Auth/isSignedIn']) {
+        store_1["default"].getters['Auth/isSignedIn']) {
         next({ name: 'Home' });
     }
     else {

@@ -1,6 +1,6 @@
 <template>
   <b-navbar  sticky toggleable="sm" class="py-1" type="dark" variant="dark">
-    <b-navbar-brand class="py-0 pl-2" to="/">
+    <b-navbar-brand class="py-0 pl-2 w-200px" to="/">
       <img class="logo " src="/images/logo.png" />
     </b-navbar-brand>
 
@@ -28,9 +28,9 @@
           <b-nav-item to="/signup" class="mx-2">تسجيل حساب</b-nav-item>
         </template>
         <template v-else>
-          <b-nav-item-dropdown class="text-right" right>
+          <b-nav-item-dropdown class="text-right pr-2 w-200px" right>
             <template class="py-0" v-slot:button-content>
-              {{pesonalProfile.user_name}} <img class="profile-pic--sm ml-2" :src="$fullUrl(pesonalProfile.user_name)" />
+              {{pesonalProfile.full_name}} <img class="profile-pic--sm ml-2" :src="$fullUrl(pesonalProfile.user_image)" />
             </template>
             <b-dropdown-item to="/profile-info">ملفي الشخصي</b-dropdown-item>
             <b-dropdown-item to="/student-notification"

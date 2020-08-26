@@ -4,10 +4,10 @@ export default {
     profile: {},
   }),
   mutations: {
-    clear(state) {
+    clear(state: any) {
       state.profile = {};
     },
-    completeUpdate(state, profile) {
+    completeUpdate(state: any, profile: any) {
       state.profile = profile;
     },
   },

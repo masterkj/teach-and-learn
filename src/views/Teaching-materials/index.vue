@@ -16,8 +16,8 @@
         class="search-large-hero__searchbox"
         tag-placeholder="اختر المواد المراد تدريسها"
         value="id"
-        v-model="materialsModel.pickedMaterials"
-        :options="materialsModel.materials"
+        v-model="pickedMaterials"
+        :options="materialsModel"
       ></multiselect>
       <button class="btn btn-primary search-large-hero__btn" @click="submit">
         تأكيد
@@ -27,8 +27,6 @@
 </template>
 
 <script>
-import MaterialsModel from "./MaterialsModel";
-import Material from "./MaterialModel";
 import http from "@/repo/teachAndLearnHttp";
 export default {
   mounted() {
@@ -36,16 +34,17 @@ export default {
   },
   data() {
     return {
-      materialsModel: new MaterialsModel([new Material(1, "--")]),
+      materialsModel: [],
+      pickedMaterials: []
     };
   },
   methods: {
     async submit() {
-      if (this.materialsModel.materials.length == 0) alert("اختر مواد");
+      if (this.materialsModel.length == 0) alert("اختر مواد");
       else {
         http()
           .post("subject/select", {
-            subject: this.materialsModel.materials.map(
+            subject: this.pickedMaterials.map(
               (material) => material.id
             ),
           })
@@ -59,10 +58,8 @@ export default {
     async getMaterials() {
       let { data } = await http().get("subject/select");
       let materials = [];
-      data.subjects.forEach((subject) =>
-        materials.push(new Material(subject.id, subject.name))
-      );
-      this.materialsModel = new MaterialsModel(materials);
+      
+      this.materialsModel = data.subjects;
     },
   },
 };

@@ -19,14 +19,6 @@
 
         <h1 class="text-center pt-4">تسجيل الحساب</h1>
         <div class="row">
-          <!-- <b-form-group class="col-lg-6" label="البريد الالكتروني">
-            <b-form-input
-              v-model="signUpModel.email"
-              type="email"
-              required
-              placeholder="أدخل بريدك الالكتروني"
-            ></b-form-input>
-          </b-form-group> -->
           <b-form-group class="col-lg-12" label="رقم الهاتف">
             <b-form-input
               v-model="signUpModel.phoneNumber"
@@ -79,7 +71,7 @@ export default {
         window.alert("كلمة المرور غير متشابهة");
       else {
          let { data } = await http().post("user/register",  fd);
-      if (data.access_token != undefined) this.signIn(data.access_token);
+      if (data.accessToken != undefined) this.signIn(data.accessToken);
       if (data.user != undefined) {
         this.completeUpdate(data.user);
       }

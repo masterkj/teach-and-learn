@@ -7,18 +7,20 @@ exports["default"] = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
-var _index = _interopRequireDefault(require("@/store/index.js"));
+var _store = _interopRequireDefault(require("@/store"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
+var baseURL = "http://travel.test"; // let baseURL = "";
+
 var _default = function _default() {
-  if (_index["default"].getters["Auth/accessToken"] != "") return _axios["default"].create({
-    baseURL: "http://travel.test/api/v1/",
+  if (_store["default"].getters["Auth/accessToken"] != "") return _axios["default"].create({
+    baseURL: "".concat(baseURL, "/api/v1/"),
     headers: {
-      Authorization: _index["default"].getters["Auth/accessToken"]
+      Authorization: _store["default"].getters["Auth/accessToken"]
     }
   });else return _axios["default"].create({
-    baseURL: "http://travel.test/api/v1/",
+    baseURL: "".concat(baseURL, "/api/v1/"),
     timeout: 1000
   });
 };

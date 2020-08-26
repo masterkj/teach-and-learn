@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
-import store from '@/store/index.js'
+import store from '@/store'
 Vue.use(VueRouter);
 
 const routes: RouteConfig[] = [
