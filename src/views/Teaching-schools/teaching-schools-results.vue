@@ -1,15 +1,23 @@
 <template>
-  <wrapper wraper-width="soft">
-    <p class="text-right mt-4">
-      المدارس التي بحاجة لدعم
-    </p>
-    <p class="text-right"><router-link to="/">العودة </router-link></p>
-    <div class="row my-4">
-      <div class="col-lg-4 col-sm-2" v-for="school in schools" :key="school.id">
-        <schoolCard :school="school" />
-      </div>
-    </div>
-  </wrapper>
+  <b-overlay :show="loadingOverlay" rounded="sm">
+    <wrapper wraper-width="soft">
+      <p class="text-right mt-4">
+        المدارس التي بحاجة لدعم
+      </p>
+      <p class="text-right"><router-link to="/">العودة </router-link></p>
+      <v-row>
+        <v-col
+          v-for="school in schools"
+          :key="school.id"
+          cols="12"
+          md="4"
+          sm="6"
+        >
+          <schoolCard :school="school" />
+        </v-col>
+      </v-row>
+    </wrapper>
+  </b-overlay>
 </template>
 
 <script>
@@ -22,6 +30,7 @@ export default {
   data() {
     return {
       schools: [],
+      loadingOverlay: false
     };
   },
   mounted() {
@@ -29,9 +38,12 @@ export default {
   },
   methods: {
     async getResults() {
+      this.loadingOverlay = true
       let { data } = await http().post("schools/material/select", {
         material: this.$route.query.materialsIds,
       });
+      this.loadingOverlay = false
+      
       this.schools = data.shortages;
 
       // this.schools = [

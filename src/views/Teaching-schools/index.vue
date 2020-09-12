@@ -1,34 +1,37 @@
 <template>
-  <div class="search-large-hero">
-    <img class="search-large-hero__bg" src="/images/teach-schools-bar.jpg" />
+  <div
+    class="search-large-hero"
+    style="background-image: url('/images/teach-schools-bar.jpg')"
+  >
     <div class="search-large-hero__content">
       <h1 class="text-center mt-4">المواد المراد تدريسها</h1>
       <p class="mt-2 text-center">
         يمكنك اختيار المواد التي يمكنك تدريسها لطلاب المدارس
       </p>
-      <multiselect
-        track-by="id"
-        :close-on-select="false"
-        :clear-on-select="true"
-        :hideSelected="true"
-        :multiple="true"
+      <v-select
+        :items="materialsModel"
+        label="اختر المواد المراد تدريسها"
+        :menu-props="{ bottom: true, offsetY: true }"
         class="search-large-hero__searchbox"
-        label="name"
-        placeholder="اختر المواد المراد تدريسها"
-        :searchable="false"
-        value="id"
         v-model="pickedMaterials"
-        :options="materialsModel"
-      ></multiselect>
+        attach
+        item-text="name"
+        item-value="id"
+        chips
+        flat
+        multiple
+        solo
+      >
+        <template #selection="{ item }">
+          <v-chip close @click:close="removeShip(item.id)">{{
+            item.name
+          }}</v-chip>
+        </template>
+      </v-select>
       <button class="btn btn-primary search-large-hero__btn" @click="submit">
         تأكيد
       </button>
     </div>
-    <!-- <div class="row">
-        <div class="col-lg-4" v-for="school in schools" :key="school.id">
-          <school-card :profile="school" />
-        </div>
-      </div> -->
   </div>
 </template>
 
@@ -60,13 +63,16 @@ export default {
       this.$router.push({
         path: "/teaching-schools/results",
         query: {
-          materialsIds: this.pickedMaterials.map((material) => material.id),
+          materialsIds: this.pickedMaterials,
         },
       });
     },
     async fetchMaterials() {
       let { data } = await http().get("schools/material/select");
       return data.materials;
+    },
+    removeShip(id) {
+      this.pickedMaterials = this.pickedMaterials.filter((e) => e != id);
     },
   },
 };

@@ -39,9 +39,8 @@ export default {
         },
         {
           bg: "/images/layout-learn-section.jpg",
-          title: "تعلم من غيرك",
-          paragraph: `مع علم وتعلم، يمكنك البحث عن طلاب مميزين وقادرين على منحك الفائدة العلمية في المواد التي 
-          تبحث عن من يعلمك اياها`,
+          title: "ما عم تترفع معك ؟ اتركها علينا",
+          paragraph: ``,
           link: "university-services/show-teachers",
           color: 'secondary'
         },

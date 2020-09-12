@@ -2,7 +2,7 @@
   <div
     class="d-flex justify-content-center align-items-center flex-column mb-4"
   >
-    <div class="w-50  justify-content-center">
+    <div class="w-50-sm  justify-content-center">
       <h2 class="text-center mt-4">اكمل معلوماتك الشخصية كأستاذ</h2>
       <b-form>
         <b-form-group label="الصورة الشخصية">

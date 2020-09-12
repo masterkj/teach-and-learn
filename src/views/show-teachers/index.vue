@@ -1,11 +1,11 @@
 <template>
-  <div class="search-large-hero">
-    <img
+  <div class="search-large-hero" style="background-image: url('/images/oreder-teacher-search.jpg')">
+    <!-- <img
       class="search-large-hero__bg"
       src="/images/oreder-teacher-search.jpg"
-    />
+    /> -->
     <div class="search-large-hero__content">
-      <h1 class="mb-4 text-center">اطلب استاذ</h1>
+      <h2 class="mb-4 text-center">قم باختيار المادة التي تواجه صعوبات فيها</h2>
       <b-form-select
         v-model="pickedMaterial"
         placeholder="-- please select a year --"
@@ -37,26 +37,6 @@ export default {
   data() {
     return {
       materials: [
-        {
-          name: " السنة الأولى -- تحليل 2",
-          id: 1,
-        },
-        {
-          name: "السنة الثانية -- ص",
-          id: 2,
-        },
-        {
-          name: "السنة الثالثة -- سس",
-          id: 3,
-        },
-        {
-          name: "السنة الرابعة",
-          id: 4,
-        },
-        {
-          name: "السنة الخامسة",
-          id: 5,
-        },
       ],
       pickedMaterial: null,
     };

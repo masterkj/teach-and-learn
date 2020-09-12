@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
-import store from '@/store'
+import store from '@/store';
 Vue.use(VueRouter);
 
 const routes: RouteConfig[] = [
@@ -58,7 +58,8 @@ const routes: RouteConfig[] = [
       {
         path: '/teaching-schools/results',
         name: 'teaching-schools-results',
-        component: () => import('@/views/Teaching-schools/teaching-schools-results.vue'),
+        component: () =>
+          import('@/views/Teaching-schools/teaching-schools-results.vue'),
       },
       {
         path: '/university-services/show-teachers',
@@ -68,12 +69,14 @@ const routes: RouteConfig[] = [
       {
         path: '/university-services/show-univirsities-teachers',
         name: 'show-univirsities-teachers',
-        component: () => import('@/views/show-teachers/show-univirsities-teachers.vue'),
+        component: () =>
+          import('@/views/show-teachers/show-univirsities-teachers.vue'),
       },
       {
         path: '/university-services/show-teachers/results',
         name: 'show-teachers-results',
-        component: () => import('@/views/show-teachers/show-teachers-results.vue'),
+        component: () =>
+          import('@/views/show-teachers/show-teachers-results.vue'),
       },
       {
         path: '/university-services/teaching-materials/complete-teacher-info',
@@ -85,7 +88,7 @@ const routes: RouteConfig[] = [
         name: 'student-notification',
         component: () => import('@/views/student-notification/index.vue'),
       },
-    ]
+    ],
   },
 ];
 
@@ -96,16 +99,34 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.name !== 'Signup'
-   && to.name !== 'Signin' && 
-   to.name !== 'Home' && 
-    !store.getters['Auth/isSignedIn']){ next({ name: 'Signin' })}
-  else
-    if ((to.name === 'Signup'
-    || to.name === 'Signin') && 
-      store.getters['Auth/isSignedIn']){ next({ name: 'Home' })}
-    else 
-   {next()}
-})
+  if (
+    to.name !== 'Signup' &&
+    to.name !== 'Signin' &&
+    to.name !== 'Home' &&
+    !store.getters['Auth/isSignedIn']
+  ) {
+    next({ name: 'Signin' });
+    return;
+  }
+  if (
+    (to.name === 'Signup' || to.name === 'Signin') &&
+    store.getters['Auth/isSignedIn']
+  ) {
+    next({ name: 'Home' });
+    return;
+  }
+
+  // if (to.name !== 'Verify-number' && !store.getters['Profile/isVerifiedNumber']) {
+  //   next({ name: 'Verify-number' });
+  //   return;
+  // }
+
+  // if (to.name !== 'Profile-edit' && !store.getters['Profile/isCompletedInfo']) {
+  //   next({ name: 'Profile-edit' });
+  //   return;
+  // }
+
+  next();
+});
 
 export default router;

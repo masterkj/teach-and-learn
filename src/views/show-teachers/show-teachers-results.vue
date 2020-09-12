@@ -1,30 +1,31 @@
 <template>
-  <wrapper wraper-width="soft">
-    <p class="text-right mt-4">
-      الأساتذة المقترحين من أجل مادة {{ $route.query.materialName }}
-    </p>
-    <p class="text-right">
-      العودة الى
-      <router-link to="/university-services/show-teachers"
-        >صفحة البحث
-      </router-link>
-    </p>
-    <p class="text-right">
-      أو<router-link to="/university-services/show-univirsities-teachers">
-        ابحث
-      </router-link>
-      عن أساتذة خارج جامعتك صفحة البحث
-    </p>
-    <div class="row my-4">
-      <div
-        class="col-lg-4 col-sm-2"
-        v-for="teacher in teachers"
-        :key="teacher.id"
-      >
-        <teacherCard :profile="teacher" />
-      </div>
-    </div>
-  </wrapper>
+  <b-overlay :show="loadingOverlay" rounded="sm">
+    <wrapper wraper-width="soft">
+      <p class="text-right mt-4">
+         الأساتذة المقترحين من قبل منصة علم و تعلم، <router-link to="/university-services/show-teachers"
+          >العودة
+        </router-link> 
+      </p>
+      <p class="text-right">
+        أو<router-link to="/university-services/show-univirsities-teachers">
+          ابحث
+        عن أساتذة خارج جامعتك 
+        </router-link>
+
+      </p>
+      <v-row class="my-4">
+        <v-col
+          :key="teacher.id"
+          v-for="teacher in teachers"
+          cols="12"
+          md="4"
+          sm="6"
+        >
+          <teacherCard :profile="teacher" />
+        </v-col>
+      </v-row>
+    </wrapper>
+  </b-overlay>
 </template>
 
 <script>
@@ -37,6 +38,7 @@ export default {
   data() {
     return {
       teachers: [],
+      loadingOverlay: false,
     };
   },
   mounted() {
@@ -44,11 +46,14 @@ export default {
   },
   methods: {
     async getResults() {
+      this.loadingOverlay = true;
       let { data } = await http().post(`teacher/request`, null, {
         params: {
           subject: this.$route.query.materialId,
         },
       });
+      this.loadingOverlay = false;
+
       this.teachers = data.TeachersNames;
       this.teachers = this.teachers.map((teacher) => ({
         image: teacher.user_image,

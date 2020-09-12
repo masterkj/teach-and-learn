@@ -3,7 +3,7 @@
     <div class="profile pt-4">
       <div class="row">
         <div class="col-sm-4">
-          <img class="profile__image" :src="$fullUrl(profile.image)" />
+          <img class="profile__image" :src="personalPhoto" />
           <div class="row">
             <div class="col-6">
               <p class="text-center">
@@ -92,6 +92,14 @@ export default {
     ...mapState({
       personalProfile: (state) => state.Profile.profile,
     }),
+    personalPhoto() {
+      if (
+        this.profile.image != undefined ||
+        this.profile.image != ""
+      )
+        return this.$fullUrl(this.profile.image);
+      else return "/images/user-avatar.png";
+    },
   },
   filters: {
     year(yearNum) {

@@ -42,8 +42,23 @@
         </b-form-group>
 
         <a href="#" class="mx-3">نسيت كلمة المرور؟</a>
-        <b-button @click="submit" variant="primary">تسجيل الدخول</b-button>
+        <b-button @click="submit" variant="primary">
+
+          <template v-if="submitting">
+              <b-spinner small type="grow"></b-spinner>
+              جاري الارسال...
+            </template>
+            <template v-else>
+              تسجيل الدخول
+            </template>
+        </b-button>
       </b-form>
+      <b-modal id="modal-1" v-model="errorDialog" hide-footer>
+        <template v-slot:modal-title>
+          خطأ
+        </template>
+        اسم المستخدم او كلمة المرور غير صحيحة</b-modal
+      >
     </div>
   </div>
 </template>
@@ -56,24 +71,41 @@ export default {
   data() {
     return {
       signInModel: new SignInModel(),
+      errorDialog: false,
+      submitting: false
     };
   },
   methods: {
     ...mapActions("Auth", ["signIn"]),
     ...mapMutations("Profile", ["completeUpdate"]),
-    async submit() {
+    submit() {
       // this.signIn('ss')
-      let { data } = await http().post("user/login", {
-        phone_number: this.signInModel.phoneNumber,
-        password: this.signInModel.password,
-      });
-      if (data.access_token != undefined) this.signIn(data.access_token);
-      if (data.user != undefined) {
-        this.completeUpdate(data.user);
-      }
-      if (data.user != undefined) {
-        this.$router.push("/");
-      }
+      this.submitting = true
+      http()
+        .post("user/login", {
+          phone_number: this.signInModel.phoneNumber,
+          password: this.signInModel.password,
+        })
+        .then((res) => {
+      this.submitting = false
+
+          if (res.data.access_token != undefined)
+            this.signIn(res.data.access_token);
+          else {
+            this.errorDialog = true;
+          }
+          if (res.data.user != undefined) {
+            this.completeUpdate(res.data.user);
+          }
+
+          if (res.data.user != undefined) {
+            this.$router.push("/");
+          }
+        })
+        .catch((err) => {
+      this.submitting = false
+          this.errorDialog = true;
+        });
     },
   },
 };

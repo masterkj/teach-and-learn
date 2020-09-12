@@ -1,5 +1,13 @@
 .search-large-hero
-    position: relative
+    height: $full-height
+    background-size: cover
+    padding-top: 50px
+    @include media-breakpoint-down(sm)
+        padding: 20px
+        background: none
+        background-image: none !important
+        height: auto
+    
     &__bg
         width: 100vw
         height: $full-height
@@ -7,18 +15,25 @@
         object-position: 50% 40%
         position: relative
     &__content
-        position: absolute
-        bottom: 30vh
-        left: 50%
-        height: 200px
+        // position: absolute
+        // bottom: 30vh
+        // left: 50%
+        // height: 200px
         width: 475px
-        transform: translateX(-50%)
-        white-space: nowrap
-        overflow-x: auto
-        overflow-y: auto
-        &--lg
-            height: 300px
-            bottom: 10vh
+        margin-left: auto
+        margin-right: auto
+        display: block
+        @include media-breakpoint-down(sm)
+            width: auto
+            
+        // transform: translateX(-50%)
+        // white-space: nowrap
+        // overflow-x: auto
+        // overflow-y: auto
+        // &--lg
+        //     height: 300px
+        //     bottom: 10vh
+    
 
 
 
@@ -28,7 +43,7 @@
         width: 400px
         height: 50px
         float: left
-        border-radius: 0 
+        border-radius: 0 !important
         .multiselect__tags
             border-radius: 0
             height: 100%
@@ -39,3 +54,7 @@
         float: left
         border-radius: 0
         height: 50px
+
+    .v-chip
+        background-color: $primary !important
+        color: #fff !important  

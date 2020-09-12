@@ -1,6 +1,6 @@
 <template>
-  <b-navbar  sticky toggleable="sm" class="py-1" type="dark" variant="dark">
-    <b-navbar-brand class="py-0 pl-2 w-200px" to="/">
+  <b-navbar sticky toggleable="md" class="py-1" type="dark" variant="dark">
+    <b-navbar-brand class="py-0 pl-2 w-200px w-200px-sm" to="/">
       <img class="logo " src="/images/logo.png" />
     </b-navbar-brand>
 
@@ -28,9 +28,10 @@
           <b-nav-item to="/signup" class="mx-2">تسجيل حساب</b-nav-item>
         </template>
         <template v-else>
-          <b-nav-item-dropdown class="text-right pr-2 w-200px" right>
+          <b-nav-item-dropdown class="text-right pr-2 w-200px w-200px-sm" right>
             <template class="py-0" v-slot:button-content>
-              {{pesonalProfile.full_name}} <img class="profile-pic--sm ml-2" :src="$fullUrl(pesonalProfile.user_image)" />
+              {{ pesonalProfile.full_name }}
+              <img class="profile-pic--sm ml-2" :src="personalPhoto" />
             </template>
             <b-dropdown-item to="/profile-info">ملفي الشخصي</b-dropdown-item>
             <b-dropdown-item to="/student-notification"
@@ -41,14 +42,12 @@
           </b-nav-item-dropdown>
         </template>
       </b-navbar-nav>
-
     </b-collapse>
-
   </b-navbar>
 </template>
 
 <script>
-import {mapState, mapActions} from 'vuex'
+import { mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -56,14 +55,23 @@ export default {
         "https://cdn.business2community.com/wp-content/uploads/2014/04/profile-picture.jpg",
     };
   },
-  computed: mapState({
-    signedIn: state => state.Auth.isSignedIn,
-    pesonalProfile: state => state.Profile.profile
-  }),
+  computed: {
+    ...mapState({
+      signedIn: (state) => state.Auth.isSignedIn,
+      pesonalProfile: (state) => state.Profile.profile,
+    }),
+
+    personalPhoto() {
+      if (
+        this.pesonalProfile.user_image != undefined ||
+        this.pesonalProfile.user_image != ""
+      )
+        return this.$fullUrl(this.pesonalProfile.user_image);
+      else return "/images/user-avatar.png";
+    },
+  },
   methods: {
-    ...mapActions('Auth', [
-    'signOut',
-  ]),
+    ...mapActions("Auth", ["signOut"]),
   },
 };
 </script>

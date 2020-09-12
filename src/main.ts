@@ -5,8 +5,9 @@ import store from './store';
 import './plugins'
 
 import './style/index.sass';
-let baseUrl = 'http://travel.test/'
-// let baseUrl = ''
+import vuetify from './plugins/vuetify';
+// let baseUrl = 'http://travel.test/storage/'
+let baseUrl = '/storage/'
 
 Vue.prototype.$baseUrl = baseUrl
 Vue.config.productionTip = false;
@@ -17,5 +18,6 @@ Vue.prototype.$fullUrl = (url: string) =>  {
 new Vue({
   router,
   store,
-  render: (h) => h(App),
+  vuetify,
+  render: (h) => h(App)
 }).$mount('#app');

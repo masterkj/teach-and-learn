@@ -1,8 +1,8 @@
 import axios from "axios";
 import store from "@/store";
 
-let baseURL = "http://travel.test";
-// let baseURL = "";
+// let baseURL = "http://travel.test";
+let baseURL = "";
 
 export default () => {
   if (store.getters["Auth/accessToken"] != "")

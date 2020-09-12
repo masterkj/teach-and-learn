@@ -13,6 +13,7 @@
             :paragraph="section.paragraph"
             :link="section.link"
             :color="section.color"
+            :soon="section.soon"
           />
         </div>
       </div>
@@ -33,27 +34,29 @@ export default {
       sections: [
         {
           bg: "/images/layout-school-section.jpg",
-          title: " المدارس الحكومية",
-          paragraph: `ان كنت قادرا على اعطاء مادة معينة في مدرسة حكومية، 
-           لطلاب مرحلة التعليم الأساسية والاعدادية، يمكنك الان التسجيل في المنصة كأستاذ لهذه المادة `,
+          title: " قسم المدارس",
+          paragraph: `عندك يوم أو يومين فراغ ببرنامجك ، شو رأيك تدرس بوحدة من المدارس اللي حواليك بالمواد اللي بتختارها ؟`,
           link: "/teaching-schools",
           color: "primary",
+          soon: false,
         },
         {
           bg: "/images/layout-univirsity-section.jpg",
-          title: " الخدمات الجامعية",
-          paragraph: `ان كنت متمكن من بعض المواد الجامعية، وعندك رغبة في تدريسها لزملائك من السنين السابقة،
-          ، يمكنك التسجيل كأستاذ هنا`,
+          title: " قسم الجامعات",
+          paragraph: `التشبيك ما بين طلاب الجامعات لمساعدة بعضهم البعض في موادهم الجامعية`,
           link: "/university-services",
           color: "light",
+          soon: false,
         },
         {
           bg: "/images/layout-collaboration-section.jpg",
           title: "علم و تعلم",
-          paragraph: `مع علم وتعلم، يمكنك البحث عن طلاب مميزين وقادرين على منحك الفائدة العلمية في المواد التي 
-          تبحث عن من يعلمك اياها`,
+          paragraph: `عم تدور على حدا يعلمك شي  (one to one)؟ وبنفس الوقت قادر تعلم شي هو بحاجتو
+          هون رح تلاقي طلبك .
+          `,
           link: "/show-teachers",
           color: "secondary",
+          soon: true,
         },
       ],
     };

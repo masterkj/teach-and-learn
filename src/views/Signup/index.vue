@@ -44,8 +44,22 @@
             ></b-form-input>
           </b-form-group>
         </div>
-        <b-button @click="submit" variant="primary">تأكيد</b-button>
+        <b-button @click="submit" variant="primary">
+          <template v-if="submitting">
+            <b-spinner small type="grow"></b-spinner>
+            جاري الارسال...
+          </template>
+          <template v-else>
+            تسجيل حساب
+          </template>
+        </b-button>
       </b-form>
+      <b-modal id="modal-1" v-model="errorDialog" hide-footer>
+        <template v-slot:modal-title>
+          خطأ
+        </template>
+        حدث خطأ ما، يرجى اعادة المحاولة</b-modal
+      >
     </div>
   </div>
 </template>
@@ -58,26 +72,42 @@ export default {
   data() {
     return {
       signUpModel: new SignUpModel(),
+      errorDialog: false,
+      submitting: false,
     };
   },
   methods: {
     ...mapActions("Auth", ["signIn"]),
     ...mapMutations("Profile", ["completeUpdate"]),
     async submit() {
-      let fd = new  FormData();
-      fd.append('phone_number',this.signUpModel.phoneNumber)
-      fd.append('password', this.signUpModel.password)
+      let fd = new FormData();
+      fd.append("phone_number", this.signUpModel.phoneNumber);
+      fd.append("password", this.signUpModel.password);
       if (this.signUpModel.password != this.signUpModel.passwordConfirmation)
         window.alert("كلمة المرور غير متشابهة");
       else {
-         let { data } = await http().post("user/register",  fd);
-      if (data.accessToken != undefined) this.signIn(data.accessToken);
-      if (data.user != undefined) {
-        this.completeUpdate(data.user);
-      }
-      if (data.user != undefined) {
-        this.$router.push("/profile-edit");
-      }
+        this.submitting = true;
+        http()
+          .post("user/register", fd)
+          .then((res) => {
+            this.submitting = false;
+
+            if (res.data.accessToken != undefined)
+              this.signIn(res.data.accessToken);
+            else {
+              this.errorDialog = true;
+            }
+            if (res.data.user != undefined) {
+              this.completeUpdate(res.data.user);
+            }
+            if (res.data.user != undefined) {
+              this.$router.push("/profile-edit");
+            }
+          })
+          .catch(() => {
+            this.submitting = false;
+            this.errorDialog = true;
+          });
       }
     },
   },
